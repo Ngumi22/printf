@@ -55,10 +55,3 @@ int _printf(const char *format, ...) {
     return count;
 }
 
-int main() {
-    _printf("This is a simple %s example. %c.\n", "printf", 'x');
-
-    return 0;
-}
-
-
