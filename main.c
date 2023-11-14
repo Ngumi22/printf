@@ -7,10 +7,10 @@
  * @format:identifier to look for
  * Return:the length of string
  */
+
 int _printf(const char *format, ...) {
     va_list args;
     int count = 0;
-    void *addr;
 
     va_start(args, format);
 
@@ -19,7 +19,8 @@ int _printf(const char *format, ...) {
             format++; 
             switch (*format) {
                 case 'c':
-                    count += putchar(va_arg(args, int));
+                    putchar(va_arg(args, int));
+                    count++;
                     break;
                 case 's':
                     count += printf("%s", va_arg(args, char *));
@@ -39,18 +40,21 @@ int _printf(const char *format, ...) {
                     count += printf("%x", va_arg(args, unsigned int));
                     break;
                 case 'p':
-                    addr = va_arg(args, void *);
-                    count += printf("%p", addr);
+                    count += printf("%p", va_arg(args, void *));
                     break;
                 case '%':
-                    count += putchar('%');
+                    putchar('%');
+                    count++;
                     break;
                 default:
-                    count += putchar('%');
-                    count += putchar(*format);
+                    putchar('%');
+                    putchar(*format);
+                    count += 2; 
+                    break;
             }
         } else {
-            count += putchar(*format);
+            putchar(*format);
+            count++;
         }
         format++;
     }
