@@ -2,6 +2,11 @@
 #include <stdio.h>
 #include "main.h"
 
+/**
+ * _printf - selects correct function
+ * @format:identifier to look for
+ * Return:the length of string
+ */
 int _printf(const char *format, ...) {
     va_list args;
     int count = 0;
